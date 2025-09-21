@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: email-service
+  config:
+    import: optional:configserver:http://localhost:8888
+    name: email-service
+
+jasypt:
+  encryptor:
+    algorithm: PBEWithMD5AndDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
+
+server:
+  port: 8082

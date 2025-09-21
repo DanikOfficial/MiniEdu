@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: user-service
+  config:
+    import: "configserver:http://localhost:8888"
+    name: user-service
+
+jasypt:
+  encryptor:
+    algorithm: PBEWithMD5AndDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
+
+server:
+  port: 8081
