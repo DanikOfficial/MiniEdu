@@ -91,21 +91,16 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.miniedu</groupId>
+			<groupId>io.github.danikofficial</groupId>
 			<artifactId>security-lib</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.github.ulisesbocchio</groupId>
-			<artifactId>jasypt-spring-boot-starter</artifactId>
-			<version>3.0.4</version>
+			<version>1.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.miniedu.model</groupId>
+			<groupId>io.github.danikofficial</groupId>
 			<artifactId>miniedu-model</artifactId>
 			<version>1.0.0</version>
 		</dependency>
