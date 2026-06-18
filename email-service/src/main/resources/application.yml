@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: email-service
+  config:
+    import: "configserver:${CONFIG_SERVER_URL:http://localhost:8888}"
+    name: email-service
+
+server:
+  port: 8082

@@ -4,10 +4,14 @@ server:
 spring:
   application:
     name: config-server
+  profiles: # testing
+    active: native #testing
   cloud:
     config:
       server:
+        native:
+          search-locations: file:///home/pete-chiboleca/Documents/Development/MiniEdu%20Confi%20Repository/miniedu-config-repo
         git:
-          uri: https://github.com/DanikOfficial/miniedu-config-repo
+          # uri: https://github.com/DanikOfficial/miniedu-config-repo
           default-label: main
           clone-on-start: true

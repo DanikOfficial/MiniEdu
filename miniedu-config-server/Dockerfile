@@ -1,0 +1,17 @@
+# Step 1: Build Stage
+FROM maven:3.9-eclipse-temurin-17 AS build
+WORKDIR /app
+COPY pom.xml .
+RUN mvn dependency:go-offline
+COPY src ./src
+RUN mvn clean package -DskipTests
+
+# Step 2: Runtime Stage
+FROM eclipse-temurin:17-jre
+WORKDIR /app
+RUN addgroup --system appgroup && adduser --system appuser --ingroup appgroup
+COPY --from=build /app/target/*.jar app.jar
+RUN chown appuser:appgroup app.jar
+USER appuser
+EXPOSE 8888
+ENTRYPOINT ["java", "-jar", "app.jar"]
