@@ -1,6 +1,5 @@
 package com.miniedu.email_service.kafka;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.miniedu.model.kafka.events.EmailEvent;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
