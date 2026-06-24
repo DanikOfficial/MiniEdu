@@ -75,6 +75,15 @@ services:
     container_name: config-server
     ports:
       - "8888:8888"
+    environment:
+      HOME: /tmp
+      # DEFAULT: Set to 'git' for completely isolated, cloud-native config loading.
+      # LOCAL TESTING: Change 'git' to 'native' if you want to use the local volume below.
+      SPRING_PROFILES_ACTIVE: git
+      CONFIG_REPO_URI: ${CONFIG_REPO_URI:-https://github.com/DanikOfficial/miniedu-config-repo}
+    # LOCAL TESTING PLACEHOLDER: Uncomment the lines below to bind your local configuration folder
+    # volumes:
+    #   - "/path/to/your/local/miniedu-config-repo:/config-repo:ro"
     restart: on-failure
     healthcheck:
       test:
@@ -82,10 +91,10 @@ services:
           "CMD-SHELL",
           "curl -f http://localhost:8888/email-service/dev || exit 1",
         ]
-      interval: 5s
-      timeout: 3s
-      retries: 10
-      start_period: 15s
+      interval: 8s
+      timeout: 5s
+      retries: 15
+      start_period: 30s
 
   user-service:
     build:
