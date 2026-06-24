@@ -102,6 +102,10 @@ public class EmailServiceImpl implements EmailService {
 
     private String loadHtmlTemplate(String path) throws IOException {
         var resource = new ClassPathResource(path);
-        return Files.readString(resource.getFile().toPath(), StandardCharsets.UTF_8);
+        // 🟩 Read directly from the resource's input stream instead of .getFile()
+        return org.springframework.util.StreamUtils.copyToString(
+                resource.getInputStream(),
+                java.nio.charset.StandardCharsets.UTF_8
+        );
     }
 }
