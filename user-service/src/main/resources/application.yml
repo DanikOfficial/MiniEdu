@@ -14,3 +14,15 @@ spring:
 
 server:
   port: 8081
+
+  springdoc:
+    api-docs:
+      enabled: true
+    swagger-ui:
+      enabled: true
+      operationsSorter: "method"
+      tagsSorted: "alpha"
+
+application:
+  description: @project.description@
+  version: @project.version@
