@@ -9,8 +9,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "users",
         uniqueConstraints = {
-                @UniqueConstraint(name = "uk_user_email", columnNames = "email"),
-                @UniqueConstraint(name = "uk_username", columnNames = "username")
+                @UniqueConstraint(name = "uk_user_email", columnNames = "email")
         })
 @Data
 @NoArgsConstructor
@@ -22,7 +21,7 @@ public class User {
     @GeneratedValue
     private UUID id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String username;
 
     @Column(nullable = false, unique = true, length = 100)
