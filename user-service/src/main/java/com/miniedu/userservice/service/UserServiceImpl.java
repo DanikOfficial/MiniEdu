@@ -12,15 +12,12 @@ import com.miniedu.userservice.dto.response.MessageResponse;
 import com.miniedu.userservice.dto.response.UserResponse;
 import com.miniedu.userservice.entity.User;
 import com.miniedu.userservice.entity.UserRole;
-import com.miniedu.userservice.error.handlers.UserErrorHandler;
 import com.miniedu.userservice.exception.EmailAlreadyExistsException;
 import com.miniedu.userservice.exception.UserNotExistException;
 import com.miniedu.userservice.kafka.service.KafkaProducerService;
 import com.miniedu.userservice.repository.UserRepository;
 import io.jsonwebtoken.JwtException;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -59,16 +56,8 @@ public class UserServiceImpl implements UserService {
                 .role(UserRole.USER)
                 .build();
 
-        User registeredUser = null;
+        User registeredUser = repository.save(user);
 
-        try {
-            registeredUser = repository.save(user);
-        } catch (DataIntegrityViolationException ex) {
-            UserErrorHandler.handle(ex);
-        }
-
-
-        assert registeredUser != null;
         String token = jwtService.generateVerificationToken(new JwtTokenData(registeredUser.getEmail(), Map.of(CLAIM_USER_ID, registeredUser.getId())));
 
         UserRegisteredEvent event = new UserRegisteredEvent(
