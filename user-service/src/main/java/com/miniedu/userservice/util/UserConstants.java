@@ -9,6 +9,8 @@ public final class UserConstants {
 
     public static final String ERROR_USER_NOT_EXIST = "The specified user does not exist!";
     public static final String ERROR_EMAIL_ALREADY_EXISTS = "There's already a user with this email";
+    public static final String ERROR_USERNAME_ALREADY_EXISTS = "This username has already been taken!";
+    public static final String ERROR_UNEXPECTED_ERROR = "An unexpected error occurred!";
 
     public static final String MSG_USER_REGISTERED =
             "User created successfully! Please check your email and click verification link to finish the registration process.";
